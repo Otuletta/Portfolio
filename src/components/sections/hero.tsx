@@ -157,7 +157,7 @@ function HeroAICommand({ isThinking, setIsThinking }: { isThinking: boolean; set
                             exit={{ opacity: 0 }}
                             className="text-[10px] font-mono text-muted-foreground/50 uppercase tracking-widest"
                         >
-                            Powered by Otuletta Intelligence
+                            Powered by Otuletta's Intelligence
                         </motion.p>
                     )}
                 </AnimatePresence>
@@ -167,7 +167,7 @@ function HeroAICommand({ isThinking, setIsThinking }: { isThinking: boolean; set
 }
 
 export function Hero() {
-    const { t } = useTranslation();
+    const { t, language } = useTranslation();
     const [isThinking, setIsThinking] = useState(false);
 
     return (
@@ -200,7 +200,8 @@ export function Hero() {
                             <div className="hidden sm:block h-4 w-px bg-border" />
                             <button
                                 data-cal-link="otuletta/15min"
-                                data-cal-config='{"layout":"month_view"}'
+                                data-cal-config={`{"layout":"month_view","language":"${(language || "en").toLowerCase()}"}`}
+                                data-cal-config-string='{"layout":"month_view"}' // Keep original for reference if needed, but the dynamic one overrides attribute
                                 className="group relative sm:inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-primary cursor-pointer"
                             >
                                 <span>{t("nav.contact")}</span>
@@ -267,15 +268,13 @@ export function Hero() {
                             className="lg:col-span-7 relative lg:absolute lg:right-0 lg:top-0 lg:bottom-0 lg:w-[55%] order-first lg:order-none mb-8 lg:mb-0"
                         >
                             <div className="relative h-[50vh] lg:h-full w-full flex items-end lg:items-center justify-center overflow-hidden">
-                                {/* Pulsing glow removed to eliminate "white stains" */}
 
-                                {/* Removed AI Aura Ring - user requested zero blur/glow */}
+
 
                                 {/* Floating Memoji — full quality with CSS mask for smooth blend */}
                                 <motion.div
                                     animate={{
                                         y: isThinking ? [0, -25, 0] : [0, -12, 0],
-                                        scale: isThinking ? 1.02 : 1,
                                     }}
                                     transition={{
                                         duration: isThinking ? 2 : 4,

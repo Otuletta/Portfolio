@@ -52,7 +52,7 @@ export const translations = {
         },
         experience: {
             section_id: "evolution",
-            title: "The Evolution",
+            title: "My Evolution",
             description: "From mastering the foundations of code to architecting intelligent ecosystems as a founder. Here is the trajectory of my technical growth.",
             work_with_me: "Let's build the future",
             current: "Active",
@@ -341,7 +341,7 @@ export const translations = {
         },
         experience: {
             section_id: "evolución",
-            title: "La Evolución",
+            title: "Mi Evolución",
             description: "Desde dominar las bases del código hasta diseñar ecosistemas inteligentes como fundador. Esta es la trayectoria de mi crecimiento técnico.",
             work_with_me: "Construyamos el futuro",
             current: "Activo",
@@ -528,8 +528,8 @@ export const translations = {
                 "Sincronización de inventario en tiempo real con costo promedio ponderado",
                 "Optimización de la jerarquía visual para ambientes de alta presión"
             ],
-            tech_showcase: ["Next.js 15", "React 19", "Tailwind CSS 4", "Prisma"],
-            tech: ["Next.js 15", "React 19", "Tailwind CSS 4", "Prisma", "PostgreSQL", "React Query", "Radix UI", "Recharts"],
+            tech_showcase: ["Next.js", "React", "Tailwind CSS", "Prisma"],
+            tech: ["Next.js", "React", "Tailwind CSS", "Prisma", "PostgreSQL", "React Query", "Radix UI", "Recharts"],
             challenge: "¿Cómo gestionar la rentabilidad semanalmente garantizando un UX veloz en cocinas de alta presión?",
             solution: "Una plataforma de inteligencia gastronómica que automatiza el costeo vinculado a compras y simplifica la producción mediante 'Macros'.",
             demo_subtext: "Explora la interfaz de Salsealo OS. Acceso total a los módulos de POS e Inventario.",
@@ -631,7 +631,7 @@ export const translations = {
         },
         experience: {
             section_id: "évolution",
-            title: "L'Évolution",
+            title: "Mon Évolution",
             description: "De la maîtrise des bases du code à l'architecture d'écosystèmes intelligents en tant que fondateur.",
             work_with_me: "Construisons l'avenir",
             current: "Actif",
@@ -814,8 +814,8 @@ export const translations = {
                 "Synchronisation de l'inventaire en temps réel avec coût moyen pondéré",
                 "Optimisation de la hiérarchie visuelle pour les environnements à haute pression"
             ],
-            tech_showcase: ["Next.js 15", "React 19", "Tailwind CSS 4", "Prisma"],
-            tech: ["Next.js 15", "React 19", "Tailwind CSS 4", "Prisma", "PostgreSQL", "React Query", "Radix UI", "Recharts"],
+            tech_showcase: ["Next.js", "React", "Tailwind CSS", "Prisma"],
+            tech: ["Next.js", "React", "Tailwind CSS", "Prisma", "PostgreSQL", "React Query", "Radix UI", "Recharts"],
             challenge: "Comment gérer la rentabilité hebdomadaire tout en garantissant un UX rapide dans des cuisines stressantes ?",
             solution: "Une plateforme d'intelligence gastronomique qui automatise le calcul du coût lié aux achats et simplifie la production via des 'Macros'.",
             demo_subtext: "Découvrez l'interface de Salsealo OS. Accès complet aux modules POS et Inventaire.",
@@ -916,7 +916,7 @@ export const translations = {
         },
         experience: {
             section_id: "evolution",
-            title: "Die Evolution",
+            title: "Meine Evolution",
             description: "Von der Beherrschung der Grundlagen des Codes bis zur Architektur intelligenter Ökosysteme als Gründer.",
             work_with_me: "Lassen Sie uns die Zukunft bauen",
             current: "Aktiv",
@@ -1102,8 +1102,8 @@ export const translations = {
                 "Echtzeit-Synchronisierung des Bestands mit gewichtetem Durchschnittspreis",
                 "Optimierte visuelle Hierarchie für Hochdruckumgebungen"
             ],
-            tech_showcase: ["Next.js 15", "React 19", "Tailwind CSS 4", "Prisma"],
-            tech: ["Next.js 15", "React 19", "Tailwind CSS 4", "Prisma", "PostgreSQL", "React Query", "Radix UI", "Recharts"],
+            tech_showcase: ["Next.js", "React", "Tailwind CSS", "Prisma"],
+            tech: ["Next.js", "React", "Tailwind CSS", "Prisma", "PostgreSQL", "React Query", "Radix UI", "Recharts"],
             challenge: "Wie verwaltet man die Rentabilität wöchentlich bei schnellem UX in einer stressigen Küchenumgebung?",
             solution: "Eine Gastronomie-Plattform, die die Rezeptkalkulation automatisiert und die Produktion durch 'Makros' vereinfacht.",
             demo_subtext: "Erleben Sie das Salsealo OS-Interface. Voller Zugriff auf POS- und Inventarmodule.",
@@ -1205,7 +1205,7 @@ export const translations = {
         },
         experience: {
             section_id: "evoluzione",
-            title: "L'Evoluzione",
+            title: "La Mia Evoluzione",
             description: "Dalla padronanza delle basi del codice alla progettazione di ecosistemi intelligenti come fondatore. Ecco la traiettoria della mia crescita tecnica.",
             work_with_me: "Costruiamo il futuro",
             current: "Attivo",
@@ -1391,8 +1391,8 @@ export const translations = {
                 "Sincronizzazione inventario in tempo reale con costo medio ponderato",
                 "Ottimizzazione della gerarchia visiva per ambienti ad alta pressione"
             ],
-            tech_showcase: ["Next.js 15", "React 19", "Tailwind CSS 4", "Prisma"],
-            tech: ["Next.js 15", "React 19", "Tailwind CSS 4", "Prisma", "PostgreSQL", "React Query", "Radix UI", "Recharts"],
+            tech_showcase: ["Next.js", "React", "Tailwind CSS", "Prisma"],
+            tech: ["Next.js", "React", "Tailwind CSS", "Prisma", "PostgreSQL", "React Query", "Radix UI", "Recharts"],
             challenge: "Come gestire la redditività settimanale garantendo una UX rapida in cucine ad alta pressione?",
             solution: "Una piattaforma di Gastronomy Intelligence che automatizza il calcolo dei costi legato agli acquisti e semplifica la produzione tramite 'Macros'.",
             demo_subtext: "Prova l'interfaccia di Salsealo OS. Accesso completo ai moduli POS e Inventario.",

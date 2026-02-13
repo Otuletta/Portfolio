@@ -10,12 +10,16 @@ import { FiArrowLeft, FiExternalLink, FiGithub, FiLayers, FiCheckCircle, FiActiv
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { MagneticWrapper } from "@/components/ui/magnetic-wrapper";
 import { cn } from "@/lib/utils";
+import { TECH_COLORS } from "@/lib/constants";
+
+
 
 export default function ProjectPage() {
     const params = useParams();
     const router = useRouter();
-    const { t } = useTranslation();
+    const { t, language } = useTranslation();
     const id = params.id as string;
+
 
     const projectKey = `project_${id}`;
     const accent = id === 'odomto' ? "#0d9488" : "#f97316"; // Medical Teal for ODOMTO
@@ -148,19 +152,31 @@ export default function ProjectPage() {
                         }}
                         className="flex flex-wrap gap-4"
                     >
-                        {(t(`${projectKey}.tech`) as any).map((tech: string) => (
-                            <motion.span
-                                key={tech}
-                                variants={{
-                                    hidden: { opacity: 0, y: 10, scale: 0.9 },
-                                    visible: { opacity: 1, y: 0, scale: 1 }
-                                }}
-                                whileHover={{ scale: 1.05, borderColor: accent }}
-                                className="px-5 py-2 rounded-xl bg-card border border-border font-mono text-xs text-muted-foreground/60 transition-colors duration-300"
-                            >
-                                {tech}
-                            </motion.span>
-                        ))}
+                        {(t(`${projectKey}.tech`) as any).map((tech: string) => {
+                            const color = TECH_COLORS[tech] || "#FFFFFF"; // Default white
+                            return (
+                                <motion.span
+                                    key={tech}
+                                    variants={{
+                                        hidden: { opacity: 0, y: 10, scale: 0.9 },
+                                        visible: { opacity: 1, y: 0, scale: 1 }
+                                    }}
+                                    whileHover={{
+                                        scale: 1.05,
+                                        boxShadow: `0 0 20px ${color}40`,
+                                        borderColor: color
+                                    }}
+                                    style={{
+                                        borderColor: `${color}40`,
+                                        backgroundColor: `${color}10`,
+                                        color: color
+                                    }}
+                                    className="px-5 py-2 rounded-xl border font-mono text-xs transition-all duration-300"
+                                >
+                                    {tech}
+                                </motion.span>
+                            );
+                        })}
                     </motion.div>
                 </motion.div>
 
@@ -974,7 +990,7 @@ export default function ProjectPage() {
                     <h2 className="text-4xl md:text-5xl font-bold mb-12">{t("project_page.similar_solution")}</h2>
                     <button
                         data-cal-link="otuletta/15min"
-                        data-cal-config='{"layout":"month_view"}'
+                        data-cal-config={`{"layout":"month_view","language":"${(language || "en").toLowerCase()}"}`}
                         className="inline-flex items-center gap-4 px-10 py-5 rounded-2xl bg-foreground text-background font-black hover:bg-foreground/90 transition-all hover:scale-105 active:scale-95 shadow-xl shadow-foreground/10 cursor-pointer"
                     >
                         {t("project_page.start_project")}

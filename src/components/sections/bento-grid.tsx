@@ -216,7 +216,7 @@ function ConcaveCard({ children, corner, className = "" }: {
    ═══════════════════════════════════════════════════════════════════ */
 
 export function BentoGrid() {
-    const { t } = useTranslation();
+    const { t, language } = useTranslation();
 
     return (
         <section id="about" className="relative py-12 px-6 bg-transparent min-h-[50vh] flex items-center">
@@ -280,18 +280,18 @@ export function BentoGrid() {
                         {/* ═══ TOP LEFT: About Me ═══ */}
                         <motion.div variants={itemVariants}>
                             <ConcaveCard corner="br" className="p-6 lg:p-12 min-h-[340px] lg:min-h-[460px] flex flex-col justify-between">
-                                <div className="w-[80%]">
+                                <div className="w-full lg:w-[80%] text-center lg:text-left">
                                     <span className="inline-block font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
                                         {t("about.card_title")}
                                     </span>
                                     <h3 className="text-3xl lg:text-4xl font-bold text-foreground leading-snug tracking-tight mb-6">
                                         {t("about.title")}
                                     </h3>
-                                    <p className="text-base leading-relaxed text-muted-foreground">
+                                    <p className="text-base leading-relaxed text-muted-foreground text-center lg:text-justify">
                                         {t("about.bio")}
                                     </p>
                                 </div>
-                                <div className="mt-6 pt-4 border-t border-border w-[75%] transition-colors">
+                                <div className="mt-6 pt-4 border-t border-border w-full lg:w-[75%] mx-auto lg:mx-0 transition-colors text-center lg:text-left">
                                     <p className="font-mono text-xs text-primary/70 tracking-wide">
                                         {t("about.experience_note")}
                                     </p>
@@ -302,8 +302,8 @@ export function BentoGrid() {
                         {/* ═══ TOP RIGHT: Tech Stack ═══ */}
                         <motion.div variants={itemVariants}>
                             <ConcaveCard corner="bl" className="p-6 lg:p-10 min-h-[340px] lg:min-h-[460px] flex flex-col group/hub">
-                                <div className="w-full flex justify-between items-start mb-6 shrink-0">
-                                    <div className="flex flex-col">
+                                <div className="w-full flex justify-between items-start mb-6 shrink-0 text-center lg:text-left">
+                                    <div className="flex flex-col w-full lg:w-auto">
                                         <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-1">
                                             {t("bento.social_title")}
                                         </span>
@@ -314,7 +314,7 @@ export function BentoGrid() {
                                 </div>
 
                                 {/* Social Grid */}
-                                <div className="w-full h-full flex-grow">
+                                <div className="w-full h-full flex-grow pb-4 lg:pb-0">
                                     <SocialConnectionHub />
                                 </div>
                             </ConcaveCard>
@@ -378,7 +378,7 @@ export function BentoGrid() {
                                 <MagneticWrapper className="absolute top-8 right-8 z-20">
                                     <button
                                         data-cal-link="otuletta/15min"
-                                        data-cal-config='{"layout":"month_view"}'
+                                        data-cal-config={`{"layout":"month_view","language":"${(language || "en").toLowerCase()}"}`}
                                         className="relative flex items-center justify-center w-14 h-14 rounded-full bg-foreground text-background hover:w-48 transition-all duration-500 ease-out overflow-hidden group/btn shadow-[0_0_30px_rgba(0,0,0,0.1)] dark:shadow-[0_0_30px_rgba(255,255,255,0.15)] cursor-pointer"
                                     >
                                         <div className="absolute inset-0 flex items-center justify-center group-hover/btn:opacity-0 transition-opacity duration-300">

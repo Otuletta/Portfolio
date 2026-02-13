@@ -6,7 +6,7 @@ import { MagneticWrapper } from "@/components/ui/magnetic-wrapper";
 import { useTranslation } from "@/hooks/use-translation";
 
 export function ContactCTA() {
-    const { t } = useTranslation();
+    const { t, language } = useTranslation();
 
     return (
         <section className="relative overflow-hidden bg-background px-6 py-20 md:py-40 transition-colors">
@@ -42,7 +42,7 @@ export function ContactCTA() {
                     <MagneticWrapper strength={0.3}>
                         <button
                             data-cal-link="otuletta/15min"
-                            data-cal-config='{"layout":"month_view"}'
+                            data-cal-config={`{"layout":"month_view","language":"${(language || "en").toLowerCase()}"}`}
                             aria-label="Schedule a call with Oscar Tuletta"
                             className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-slate-900 border border-border/50 dark:bg-primary dark:border-none px-8 py-4 text-base font-semibold text-white shadow-lg shadow-primary/20 transition-all hover:shadow-xl hover:shadow-primary/40 cursor-pointer"
                         >

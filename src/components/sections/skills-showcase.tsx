@@ -210,7 +210,7 @@ export function SkillsShowcase() {
                 <svg viewBox={mobileViewBox} className="w-full h-full transition-[viewBox] duration-500 ease-in-out">
                     {/* Definitions for Glows */}
                     <defs>
-                        {/* Removed glow filter by user request */}
+
                     </defs>
 
                     {/* All connections rendered with pathLength: 1 to avoid animation overhead on large trees */}
@@ -313,7 +313,6 @@ export function SkillsShowcase() {
                 </svg>
             </div>
 
-            {/* Removed Background Atmosphere by user request */}
             <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
                 <div className="absolute top-0 w-full h-[1px] bg-gradient-to-r from-transparent via-foreground/5 to-transparent" />
                 <div className="absolute bottom-0 w-full h-[1px] bg-gradient-to-r from-transparent via-foreground/5 to-transparent" />

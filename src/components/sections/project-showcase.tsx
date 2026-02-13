@@ -9,6 +9,7 @@ import { useTranslation } from "@/hooks/use-translation";
 import { FiChevronRight } from "react-icons/fi";
 
 import { projects, ProjectData } from "@/lib/data";
+import { TECH_COLORS } from "@/lib/constants";
 
 // No local Project interface or projects array needed anymore
 
@@ -155,7 +156,7 @@ function ProjectItem({ project, index }: { project: ProjectData; index: number }
                         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
                         className="w-full h-full relative transition-colors"
                     >
-                        {/* Removed Interactive Radial Glow by user request */}
+
 
                         {/* Logo Container - Floating Effect */}
                         <motion.div
@@ -205,11 +206,22 @@ function ProjectItem({ project, index }: { project: ProjectData; index: number }
                 </div>
 
                 <div className="flex flex-wrap gap-2 mb-10">
-                    {Array.isArray(t(project.techKey)) && (t(project.techKey) as string[]).map((techItem: string) => (
-                        <span key={techItem} className="px-3 py-1 bg-muted/50 rounded-md text-[11px] font-mono text-muted-foreground border border-border">
-                            {techItem}
-                        </span>
-                    ))}
+                    {Array.isArray(t(project.techKey)) && (t(project.techKey) as string[]).map((techItem: string) => {
+                        const color = TECH_COLORS[techItem] || "#FFFFFF";
+                        return (
+                            <span
+                                key={techItem}
+                                style={{
+                                    borderColor: `${color}40`,
+                                    backgroundColor: `${color}10`,
+                                    color: color
+                                }}
+                                className="px-3 py-1 rounded-md text-[11px] font-mono border transition-colors"
+                            >
+                                {techItem}
+                            </span>
+                        );
+                    })}
                 </div>
 
                 <Link
