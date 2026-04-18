@@ -1,4 +1,4 @@
-export type Language = "EN" | "ES" | "FR" | "DE" | "IT";
+﻿export type Language = "EN" | "ES" | "FR" | "DE" | "IT";
 
 export const translations = {
     EN: {
@@ -638,69 +638,6 @@ export const translations = {
             demo_button_label: "Abrir Motor OS"
         },
 
-        project_null: {
-            description_showcase: "A high-performance Web Worker game engine. 10M+ Operations/sec executed seamlessly.",
-            description: "A high-performance Web Worker game engine bypassing standard React limitations. 10M+ Operations/sec executed seamlessly with a premium cyber-neon aesthetic.",
-            highlights_showcase: [
-                "Offscreen Canvas rendering",
-                "Web Worker multithreading",
-                "Zero-latency input handling",
-                "Advanced piece mechanics"
-            ],
-            highlights: [
-                "Offscreen Canvas rendering",
-                "Web Worker multithreading",
-                "Zero-latency input handling",
-                "Advanced piece mechanics",
-                "A* algorithmic AI routing",
-                "Custom piece shadow DOM rendering"
-            ],
-            tech_showcase: ["Next.js", "TypeScript", "Canvas API", "Web Workers"],
-            tech: ["Next.js", "TypeScript", "Canvas API", "Web Workers", "Tailwind HTML", "Framer Motion"],
-            challenge: "Achieving true 144Hz 0-latency execution inside a standard React environment.",
-            solution: "Decoupled the game loop into a dedicated Web Worker thread utilizing OffscreenCanvas, ensuring React's VDOM diffing never interrupts the rendering pipeline.",
-            challenges_list: [
-                {
-                    title: "Main Thread Blocking",
-                    description: "React hydration and state updates were dropping canvas frames. Moved entire game loop to a Web Worker."
-                },
-                {
-                    title: "Event Synchronization",
-                    description: "Built a zero-copy ArrayBuffer messaging system to transfer input states to the engine at 1000Hz."
-                },
-                {
-                    title: "DOM Injection",
-                    description: "Engineered a custom renderer to draw pixel-perfect gradient shadow DOM elements directly on canvas."
-                }
-            ],
-            demo_button_label: "Initialize Engine",
-            demo_subtext: "Experience the OffscreenCanvas implementation locally.",
-            recipe_intelligence_title: "10M Ops/Sec",
-            recipe_intelligence_desc: "The WASM-inspired loop computes collision data simultaneously.",
-            calc_latency_value: "0.01ms",
-            calc_latency_label: "Input Polling",
-            stock_accuracy_value: "144",
-            stock_accuracy_label: "Target FPS",
-            engine_label: "ENGINE",
-            real_time_costing: "MULTITHREADED",
-            purchase_link: "GITHUB",
-            demo_isolation_title: "Web Worker Architecture",
-            demo_isolation_desc: "Isolating visual computations into a background thread.",
-            isolation_step_01: "OffscreenCanvas Tunneling",
-            isolation_step_02: "ArrayBuffer Sync",
-            isolation_active: "WORKER ACTIVE",
-            arch_footer_sub: "TypeScript Web Engine",
-            arch_footer_main: "High-Frequency Gameloop",
-            analytics_label: "Render Metrics",
-            recipe_lab_label: "Core Architecture",
-            pos_engine: "NATIVE",
-            inventory_hub: "STORAGE",
-            core_label: "NULL CORE",
-            demo_badge_1: "0 Latency",
-            demo_badge_2: "Web Worker",
-            demo_badge_3: "OffscreenCanvas",
-        }
-
     },
     FR: {
         nav: {
@@ -987,69 +924,6 @@ export const translations = {
             demo_badge_3: "Log d'Événements",
             demo_button_label: "Ouvrir le Moteur OS"
         },
-
-        project_null: {
-            description_showcase: "A high-performance Web Worker game engine. 10M+ Operations/sec executed seamlessly.",
-            description: "A high-performance Web Worker game engine bypassing standard React limitations. 10M+ Operations/sec executed seamlessly with a premium cyber-neon aesthetic.",
-            highlights_showcase: [
-                "Offscreen Canvas rendering",
-                "Web Worker multithreading",
-                "Zero-latency input handling",
-                "Advanced piece mechanics"
-            ],
-            highlights: [
-                "Offscreen Canvas rendering",
-                "Web Worker multithreading",
-                "Zero-latency input handling",
-                "Advanced piece mechanics",
-                "A* algorithmic AI routing",
-                "Custom piece shadow DOM rendering"
-            ],
-            tech_showcase: ["Next.js", "TypeScript", "Canvas API", "Web Workers"],
-            tech: ["Next.js", "TypeScript", "Canvas API", "Web Workers", "Tailwind HTML", "Framer Motion"],
-            challenge: "Achieving true 144Hz 0-latency execution inside a standard React environment.",
-            solution: "Decoupled the game loop into a dedicated Web Worker thread utilizing OffscreenCanvas, ensuring React's VDOM diffing never interrupts the rendering pipeline.",
-            challenges_list: [
-                {
-                    title: "Main Thread Blocking",
-                    description: "React hydration and state updates were dropping canvas frames. Moved entire game loop to a Web Worker."
-                },
-                {
-                    title: "Event Synchronization",
-                    description: "Built a zero-copy ArrayBuffer messaging system to transfer input states to the engine at 1000Hz."
-                },
-                {
-                    title: "DOM Injection",
-                    description: "Engineered a custom renderer to draw pixel-perfect gradient shadow DOM elements directly on canvas."
-                }
-            ],
-            demo_button_label: "Initialize Engine",
-            demo_subtext: "Experience the OffscreenCanvas implementation locally.",
-            recipe_intelligence_title: "10M Ops/Sec",
-            recipe_intelligence_desc: "The WASM-inspired loop computes collision data simultaneously.",
-            calc_latency_value: "0.01ms",
-            calc_latency_label: "Input Polling",
-            stock_accuracy_value: "144",
-            stock_accuracy_label: "Target FPS",
-            engine_label: "ENGINE",
-            real_time_costing: "MULTITHREADED",
-            purchase_link: "GITHUB",
-            demo_isolation_title: "Web Worker Architecture",
-            demo_isolation_desc: "Isolating visual computations into a background thread.",
-            isolation_step_01: "OffscreenCanvas Tunneling",
-            isolation_step_02: "ArrayBuffer Sync",
-            isolation_active: "WORKER ACTIVE",
-            arch_footer_sub: "TypeScript Web Engine",
-            arch_footer_main: "High-Frequency Gameloop",
-            analytics_label: "Render Metrics",
-            recipe_lab_label: "Core Architecture",
-            pos_engine: "NATIVE",
-            inventory_hub: "STORAGE",
-            core_label: "NULL CORE",
-            demo_badge_1: "0 Latency",
-            demo_badge_2: "Web Worker",
-            demo_badge_3: "OffscreenCanvas",
-        }
 
     },
     DE: {
@@ -1340,69 +1214,6 @@ export const translations = {
             demo_button_label: "OS-Engine Öffnen"
         },
 
-        project_null: {
-            description_showcase: "A high-performance Web Worker game engine. 10M+ Operations/sec executed seamlessly.",
-            description: "A high-performance Web Worker game engine bypassing standard React limitations. 10M+ Operations/sec executed seamlessly with a premium cyber-neon aesthetic.",
-            highlights_showcase: [
-                "Offscreen Canvas rendering",
-                "Web Worker multithreading",
-                "Zero-latency input handling",
-                "Advanced piece mechanics"
-            ],
-            highlights: [
-                "Offscreen Canvas rendering",
-                "Web Worker multithreading",
-                "Zero-latency input handling",
-                "Advanced piece mechanics",
-                "A* algorithmic AI routing",
-                "Custom piece shadow DOM rendering"
-            ],
-            tech_showcase: ["Next.js", "TypeScript", "Canvas API", "Web Workers"],
-            tech: ["Next.js", "TypeScript", "Canvas API", "Web Workers", "Tailwind HTML", "Framer Motion"],
-            challenge: "Achieving true 144Hz 0-latency execution inside a standard React environment.",
-            solution: "Decoupled the game loop into a dedicated Web Worker thread utilizing OffscreenCanvas, ensuring React's VDOM diffing never interrupts the rendering pipeline.",
-            challenges_list: [
-                {
-                    title: "Main Thread Blocking",
-                    description: "React hydration and state updates were dropping canvas frames. Moved entire game loop to a Web Worker."
-                },
-                {
-                    title: "Event Synchronization",
-                    description: "Built a zero-copy ArrayBuffer messaging system to transfer input states to the engine at 1000Hz."
-                },
-                {
-                    title: "DOM Injection",
-                    description: "Engineered a custom renderer to draw pixel-perfect gradient shadow DOM elements directly on canvas."
-                }
-            ],
-            demo_button_label: "Initialize Engine",
-            demo_subtext: "Experience the OffscreenCanvas implementation locally.",
-            recipe_intelligence_title: "10M Ops/Sec",
-            recipe_intelligence_desc: "The WASM-inspired loop computes collision data simultaneously.",
-            calc_latency_value: "0.01ms",
-            calc_latency_label: "Input Polling",
-            stock_accuracy_value: "144",
-            stock_accuracy_label: "Target FPS",
-            engine_label: "ENGINE",
-            real_time_costing: "MULTITHREADED",
-            purchase_link: "GITHUB",
-            demo_isolation_title: "Web Worker Architecture",
-            demo_isolation_desc: "Isolating visual computations into a background thread.",
-            isolation_step_01: "OffscreenCanvas Tunneling",
-            isolation_step_02: "ArrayBuffer Sync",
-            isolation_active: "WORKER ACTIVE",
-            arch_footer_sub: "TypeScript Web Engine",
-            arch_footer_main: "High-Frequency Gameloop",
-            analytics_label: "Render Metrics",
-            recipe_lab_label: "Core Architecture",
-            pos_engine: "NATIVE",
-            inventory_hub: "STORAGE",
-            core_label: "NULL CORE",
-            demo_badge_1: "0 Latency",
-            demo_badge_2: "Web Worker",
-            demo_badge_3: "OffscreenCanvas",
-        }
-
     },
     IT: {
         nav: {
@@ -1692,69 +1503,6 @@ export const translations = {
             demo_badge_3: "Log Eventi Attivo",
             demo_button_label: "Apri Motore OS"
         },
-
-        project_null: {
-            description_showcase: "A high-performance Web Worker game engine. 10M+ Operations/sec executed seamlessly.",
-            description: "A high-performance Web Worker game engine bypassing standard React limitations. 10M+ Operations/sec executed seamlessly with a premium cyber-neon aesthetic.",
-            highlights_showcase: [
-                "Offscreen Canvas rendering",
-                "Web Worker multithreading",
-                "Zero-latency input handling",
-                "Advanced piece mechanics"
-            ],
-            highlights: [
-                "Offscreen Canvas rendering",
-                "Web Worker multithreading",
-                "Zero-latency input handling",
-                "Advanced piece mechanics",
-                "A* algorithmic AI routing",
-                "Custom piece shadow DOM rendering"
-            ],
-            tech_showcase: ["Next.js", "TypeScript", "Canvas API", "Web Workers"],
-            tech: ["Next.js", "TypeScript", "Canvas API", "Web Workers", "Tailwind HTML", "Framer Motion"],
-            challenge: "Achieving true 144Hz 0-latency execution inside a standard React environment.",
-            solution: "Decoupled the game loop into a dedicated Web Worker thread utilizing OffscreenCanvas, ensuring React's VDOM diffing never interrupts the rendering pipeline.",
-            challenges_list: [
-                {
-                    title: "Main Thread Blocking",
-                    description: "React hydration and state updates were dropping canvas frames. Moved entire game loop to a Web Worker."
-                },
-                {
-                    title: "Event Synchronization",
-                    description: "Built a zero-copy ArrayBuffer messaging system to transfer input states to the engine at 1000Hz."
-                },
-                {
-                    title: "DOM Injection",
-                    description: "Engineered a custom renderer to draw pixel-perfect gradient shadow DOM elements directly on canvas."
-                }
-            ],
-            demo_button_label: "Initialize Engine",
-            demo_subtext: "Experience the OffscreenCanvas implementation locally.",
-            recipe_intelligence_title: "10M Ops/Sec",
-            recipe_intelligence_desc: "The WASM-inspired loop computes collision data simultaneously.",
-            calc_latency_value: "0.01ms",
-            calc_latency_label: "Input Polling",
-            stock_accuracy_value: "144",
-            stock_accuracy_label: "Target FPS",
-            engine_label: "ENGINE",
-            real_time_costing: "MULTITHREADED",
-            purchase_link: "GITHUB",
-            demo_isolation_title: "Web Worker Architecture",
-            demo_isolation_desc: "Isolating visual computations into a background thread.",
-            isolation_step_01: "OffscreenCanvas Tunneling",
-            isolation_step_02: "ArrayBuffer Sync",
-            isolation_active: "WORKER ACTIVE",
-            arch_footer_sub: "TypeScript Web Engine",
-            arch_footer_main: "High-Frequency Gameloop",
-            analytics_label: "Render Metrics",
-            recipe_lab_label: "Core Architecture",
-            pos_engine: "NATIVE",
-            inventory_hub: "STORAGE",
-            core_label: "NULL CORE",
-            demo_badge_1: "0 Latency",
-            demo_badge_2: "Web Worker",
-            demo_badge_3: "OffscreenCanvas",
-        }
 
     },
 };

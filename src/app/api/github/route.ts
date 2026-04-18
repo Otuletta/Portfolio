@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const GITHUB_USERNAME = process.env.GITHUB_USERNAME || "oscartuletta";
+const GITHUB_USERNAME = process.env.GITHUB_USERNAME || "Otuletta";
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";
 
 const QUERY = `

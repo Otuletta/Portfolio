@@ -201,7 +201,6 @@ export function Hero() {
                             <button
                                 data-cal-link="otuletta/15min"
                                 data-cal-config={`{"layout":"month_view","language":"${(language || "en").toLowerCase()}"}`}
-                                data-cal-config-string='{"layout":"month_view"}' // Keep original for reference if needed, but the dynamic one overrides attribute
                                 className="group relative sm:inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-primary cursor-pointer"
                             >
                                 <span>{t("nav.contact")}</span>

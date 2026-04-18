@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, Variants, useMotionValue, useSpring } from "framer-motion";
+import { motion, Variants, useSpring, useMotionValue } from "framer-motion";
 import { useRef, useEffect, useCallback, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
@@ -138,9 +138,6 @@ function ConcaveCard({ children, corner, className = "" }: {
     const R = "182.5px"; // Half of 365px (Ring Size)
     const O = "3px";     // Half of gap-1.5 (Correct Alignment)
 
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
     const springConfig = { damping: 20, stiffness: 150 };
     const rotateX = useSpring(useMotionValue(0), springConfig);
     const rotateY = useSpring(useMotionValue(0), springConfig);
@@ -163,9 +160,6 @@ function ConcaveCard({ children, corner, className = "" }: {
         const rect = e.currentTarget.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-
-        mouseX.set(x);
-        mouseY.set(y);
 
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;

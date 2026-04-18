@@ -15,13 +15,21 @@ export async function POST(req: Request) {
 
         const genAI = new GoogleGenerativeAI(apiKey);
 
-        // 1. APLANAMOS TUS DATOS EN UN SOLO TEXTO DE CONTEXTO
-        // Combinamos la metadata de projects con el texto de translations (Español por defecto para el contexto)
+        // Resolve dot-notation paths (e.g. "project_odomto.description_showcase")
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const resolveNestedKey = (obj: Record<string, any>, path: string): unknown => {
+            return path.split('.').reduce((acc, key) => {
+                if (acc && typeof acc === 'object') return (acc as Record<string, unknown>)[key];
+                return undefined;
+            }, obj as unknown);
+        };
+
+        // Flatten project data with proper nested key resolution
         const projectsContext = projects.map(p => ({
             ...p,
-            details: translations.ES[p.descriptionKey as keyof typeof translations.ES],
-            highlights: translations.ES[p.highlightsKey as keyof typeof translations.ES],
-            tech: translations.ES[p.techKey as keyof typeof translations.ES]
+            details: resolveNestedKey(translations.ES, p.descriptionKey),
+            highlights: resolveNestedKey(translations.ES, p.highlightsKey),
+            tech: resolveNestedKey(translations.ES, p.techKey),
         }));
 
         const experienceContext = translations.ES.experience;

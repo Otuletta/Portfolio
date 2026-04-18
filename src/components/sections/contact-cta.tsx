@@ -10,10 +10,6 @@ export function ContactCTA() {
 
     return (
         <section className="relative overflow-hidden bg-background px-6 py-20 md:py-40 transition-colors">
-            {/* Animated gradient background */}
-            <div className="absolute inset-0">
-                <div className="absolute inset-0 bg-background opacity-50" />
-            </div>
 
             <div className="relative mx-auto max-w-4xl text-center">
                 {/* Heading */}

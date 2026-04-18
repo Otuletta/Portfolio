@@ -19,7 +19,6 @@ export const projects = [
         descriptionKey: "project_odomto.description_showcase",
         highlightsKey: "project_odomto.highlights_showcase",
         techKey: "project_odomto.tech_showcase",
-        url: "otuletta.com/odomto",
         accent: "#0d9488" // Technical Teal
     },
     {
@@ -29,7 +28,6 @@ export const projects = [
         descriptionKey: "project_salsealo.description_showcase",
         highlightsKey: "project_salsealo.highlights_showcase",
         techKey: "project_salsealo.tech_showcase",
-        url: "otuletta.com/salsealo",
         accent: "#f97316" // Orange
     },
     {
@@ -39,7 +37,6 @@ export const projects = [
         descriptionKey: "project_null.description_showcase",
         highlightsKey: "project_null.highlights_showcase",
         techKey: "project_null.tech_showcase",
-        url: "otuletta.com/null",
         accent: "#00BFDF" // Cyan Neon
     },
 ];
@@ -52,6 +49,5 @@ export interface ProjectData {
     descriptionKey: string;
     highlightsKey: string;
     techKey: string;
-    url: string;
     accent: string;
 }

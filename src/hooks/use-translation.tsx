@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { translations, Language } from "@/lib/translations";
 
 interface LanguageContextType {
@@ -23,6 +23,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         return "EN";
     });
 
+    // Sync HTML lang attribute for SEO and screen readers
+    useEffect(() => {
+        document.documentElement.lang = language.toLowerCase();
+    }, [language]);
+
     const handleSetLanguage = (lang: Language) => {
         setLanguage(lang);
         localStorage.setItem("portfolio-lang", lang);
@@ -32,16 +37,25 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const t = (path: string): any => {
         const keys = path.split(".");
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        let current: any = translations[language];
-
-        for (const key of keys) {
-            if (!current || typeof current !== 'object' || current[key] === undefined) {
-                return path;
+        const resolve = (obj: any): any => {
+            let current = obj;
+            for (const key of keys) {
+                if (!current || typeof current !== 'object' || current[key] === undefined) {
+                    return undefined;
+                }
+                current = current[key];
             }
-            current = current[key];
-        }
+            return current;
+        };
 
-        return current;
+        // Try current language first, then fall back to EN
+        const result = resolve(translations[language]);
+        if (result !== undefined) return result;
+
+        const fallback = resolve(translations["EN"]);
+        if (fallback !== undefined) return fallback;
+
+        return path;
     };
 
     return (

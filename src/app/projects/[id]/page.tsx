@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "@/hooks/use-translation";
+import { projects } from "@/lib/data";
 import { FiArrowLeft, FiLayers, FiCheckCircle, FiActivity, FiCode, FiMonitor, FiArrowRight, FiShield } from "react-icons/fi";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { MagneticWrapper } from "@/components/ui/magnetic-wrapper";
@@ -19,7 +20,7 @@ export default function ProjectPage() {
 
 
     const projectKey = `project_${id}`;
-    const accent = id === 'odomto' ? "#0d9488" : id === 'null' ? "#00BFDF" : "#f97316";
+    const accent = projects.find(p => p.id === id)?.accent ?? "#6366f1";
 
     const [gameMode, setGameMode] = useState('spectator');
 
@@ -39,7 +40,8 @@ export default function ProjectPage() {
     });
 
     const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-    const blur = useTransform(scrollYProgress, [0, 0.8], ["0px", "12px"]);
+    const blurAmount = useTransform(scrollYProgress, [0, 0.8], [0, 12]);
+    const blurFilter = useMotionTemplate`blur(${blurAmount}px)`;
     const scale = useTransform(scrollYProgress, [0, 0.8], [1, 0.95]);
 
     if (!projectData || typeof projectData === 'string') return null;
@@ -94,7 +96,7 @@ export default function ProjectPage() {
                 )}
 
                 <motion.div
-                    style={{ opacity, filter: `blur(${blur.get()})`, scale }}
+                    style={{ opacity, filter: blurFilter, scale }}
                     className="max-w-7xl mx-auto relative z-10"
                 >
                     <motion.div
