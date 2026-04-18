@@ -15,6 +15,13 @@ const nextConfig: NextConfig = {
     config.resolve.extensionAlias = {
       '.js': ['.ts', '.tsx', '.js', '.jsx'],
     };
+    config.resolve.extensions.push('.ts', '.tsx');
+    config.module.rules.push({
+      test: /\.m?js/,
+      resolve: {
+        fullySpecified: false,
+      },
+    });
     config.resolve.alias = {
       ...config.resolve.alias,
       '@null/engine-core/NullGame': path.resolve(__dirname, 'node_modules/@null/engine-core/NullGame/index.tsx'),
