@@ -115,7 +115,7 @@ export function SocialConnectionHub() {
         {
             name: "CV",
             icon: Icons.Resume,
-            href: (t("bento.cv_path") as string) || "/resumes/Oscar_Tuletta_CV_EN.pdf",
+            href: (t("bento.cv_path") as string) || "/resumes/CV Otuletta EN.pdf",
             color: "group-hover:text-[#10B981]",
             glow: "rgba(16,185,129,0.3)",
             bg: "bg-[#10B981]/10"

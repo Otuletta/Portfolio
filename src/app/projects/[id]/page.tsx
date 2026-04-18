@@ -1,28 +1,37 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { useParams } from "next/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "@/hooks/use-translation";
-import { FiArrowLeft, FiExternalLink, FiGithub, FiLayers, FiCheckCircle, FiActivity, FiCode, FiMonitor, FiArrowRight, FiShield } from "react-icons/fi";
+import { FiArrowLeft, FiLayers, FiCheckCircle, FiActivity, FiCode, FiMonitor, FiArrowRight, FiShield } from "react-icons/fi";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { MagneticWrapper } from "@/components/ui/magnetic-wrapper";
 import { cn } from "@/lib/utils";
 import { TECH_COLORS } from "@/lib/constants";
+import dynamic from 'next/dynamic';
 
+const NullGame = dynamic(
+    () => import('@null/engine-core/NullGame').then(m => m.NullGame),
+    {
+        ssr: false,
+        loading: () => <div className="flex h-96 w-full items-center justify-center font-mono text-sm text-[#00BFDF] animate-pulse">Initializing Engine...</div>
+    }
+);
 
 
 export default function ProjectPage() {
     const params = useParams();
-    const router = useRouter();
     const { t, language } = useTranslation();
     const id = params.id as string;
 
 
     const projectKey = `project_${id}`;
-    const accent = id === 'odomto' ? "#0d9488" : "#f97316"; // Medical Teal for ODOMTO
+    const accent = id === 'odomto' ? "#0d9488" : id === 'null' ? "#00BFDF" : "#f97316";
+
+    const [gameMode, setGameMode] = useState('spectator');
 
     // Force scroll to top on mount
     useEffect(() => {
@@ -84,7 +93,7 @@ export default function ProjectPage() {
             <section ref={containerRef} className="relative pt-48 pb-32 px-6 overflow-hidden">
                 <div className="absolute inset-0 bg-background pointer-events-none" />
 
-                {(id === 'odomto' || id === 'salsealo') && (
+                {['odomto', 'salsealo', 'null'].includes(id) && (
                     <div
                         className="absolute inset-0 opacity-[0.03] pointer-events-none"
                         style={{
@@ -112,17 +121,16 @@ export default function ProjectPage() {
                     >
                         <motion.h1
                             variants={{
-                                hidden: { opacity: 0, scale: 0.9, letterSpacing: "-0.05em" },
+                                hidden: { opacity: 0, y: 20 },
                                 visible: {
                                     opacity: 1,
-                                    scale: 1,
-                                    letterSpacing: "-0.02em",
+                                    y: 0,
                                     transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] }
                                 }
                             }}
-                            className="text-6xl md:text-9xl font-black tracking-tighter leading-none mb-8"
+                            className="text-5xl md:text-7xl lg:text-[8rem] font-bold tracking-[-0.04em] leading-[1.05] mb-8 text-white relative z-20"
                         >
-                            {id.toUpperCase()}
+                            {id === 'null' ? 'NULL' : id.toUpperCase()}
                         </motion.h1>
                         <motion.p
                             variants={{
@@ -133,11 +141,12 @@ export default function ProjectPage() {
                                     transition: { duration: 0.8, ease: "easeOut" }
                                 }
                             }}
-                            className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed"
+                            className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed relative z-20"
                         >
                             {t(`${projectKey}.description`)}
                         </motion.p>
                     </motion.div>
+
 
                     {/* Quick Stats / Tech */}
                     <motion.div
@@ -150,28 +159,17 @@ export default function ProjectPage() {
                                 transition: { staggerChildren: 0.05, delayChildren: 0.8 }
                             }
                         }}
-                        className="flex flex-wrap gap-4"
+                        className="flex flex-wrap gap-3"
                     >
-                        {(t(`${projectKey}.tech`) as any).map((tech: string) => {
-                            const color = TECH_COLORS[tech] || "#FFFFFF"; // Default white
+                        {(t(`${projectKey}.tech`) as string[]).map((tech: string) => {
                             return (
                                 <motion.span
                                     key={tech}
                                     variants={{
-                                        hidden: { opacity: 0, y: 10, scale: 0.9 },
-                                        visible: { opacity: 1, y: 0, scale: 1 }
+                                        hidden: { opacity: 0, x: -10 },
+                                        visible: { opacity: 1, x: 0 }
                                     }}
-                                    whileHover={{
-                                        scale: 1.05,
-                                        boxShadow: `0 0 20px ${color}40`,
-                                        borderColor: color
-                                    }}
-                                    style={{
-                                        borderColor: `${color}40`,
-                                        backgroundColor: `${color}10`,
-                                        color: color
-                                    }}
-                                    className="px-5 py-2 rounded-xl border font-mono text-xs transition-all duration-300"
+                                    className="px-4 py-1.5 rounded-full border border-border bg-muted/30 text-[10px] uppercase tracking-widest font-medium text-muted-foreground/80 backdrop-blur-sm transition-all hover:bg-muted/50 hover:text-foreground"
                                 >
                                     {tech}
                                 </motion.span>
@@ -186,6 +184,9 @@ export default function ProjectPage() {
                 )}
                 {id === 'salsealo' && (
                     <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_100%_10%,var(--primary)_0%,transparent_50%)] opacity-[0.08] pointer-events-none" />
+                )}
+                {id === 'null' && (
+                    <div className="absolute top-0 right-0 w-1/3 h-full bg-[radial-gradient(circle_at_100%_20%,#00BFDF_0%,transparent_50%)] opacity-[0.08] pointer-events-none" />
                 )}
             </section>
 
@@ -310,6 +311,103 @@ export default function ProjectPage() {
                 </motion.section>
             )}
 
+            {/* NULL Interactive Demo Section */}
+            {id === 'null' && (
+                <motion.section
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="relative w-full py-40 overflow-hidden border-y border-primary/20 bg-[#020202]"
+                >
+                    <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-16">
+                        <div className="flex-1 space-y-12">
+                            <motion.div
+                                initial={{ opacity: 0, x: -50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] uppercase tracking-[0.4em] font-mono shadow-[0_0_20px_rgba(0,191,223,0.1)]"
+                            >
+                                <span className="relative flex h-2.5 w-2.5">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+                                </span>
+                                {t("project_page.live_experience")}
+                            </motion.div>
+
+                            <motion.h3
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-[1.1] max-w-2xl"
+                            >
+                                The Engine Core
+                            </motion.h3>
+
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 }}
+                                className="text-xl md:text-2xl text-muted-foreground/80 leading-relaxed max-w-xl font-sans"
+                            >
+                                {t("project_null.demo_subtext")}
+                            </motion.p>
+                        </div>
+
+                        <div className="relative flex-1 group w-full">
+                            <div className="relative rounded-3xl border border-border/50 bg-black shadow-2xl overflow-hidden flex flex-col null-isolated-container h-[700px]">
+                                {/* Mode Switcher Toolbar */}
+                                <div className="absolute top-4 left-4 z-40 flex items-center gap-2 p-1 bg-black/60 backdrop-blur-md rounded-lg border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    {[
+                                        { id: 'spectator', label: 'SPECTATE', icon: '◈' },
+                                        { id: 'zen', label: 'ZEN', icon: '❃' },
+                                        { id: 'vsbot', label: '1V1 BOT', icon: '⚔' }
+                                    ].map((m) => (
+                                        <button
+                                            key={m.id}
+                                            onClick={() => setGameMode(m.id)}
+                                            className={`px-3 py-1.5 rounded flex items-center gap-2 text-[10px] font-mono tracking-widest transition-all ${
+                                                gameMode === m.id 
+                                                ? 'bg-[#00BFDF] text-black shadow-[0_0_15px_rgba(0,191,223,0.4)]' 
+                                                : 'text-white/40 hover:text-white/80 hover:bg-white/5'
+                                            }`}
+                                        >
+                                            <span className="text-xs">{m.icon}</span>
+                                            {m.label}
+                                        </button>
+                                    ))}
+                                </div>
+
+                                {/* Simple Header */}
+                                <div className="h-12 border-b border-border/50 bg-muted/40 px-6 flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-2.5 h-2.5 rounded-full bg-primary/20 border border-primary/40" />
+                                        <div className="text-[9px] font-mono text-muted-foreground/40 uppercase tracking-widest">
+                                            sys_mode: live
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                {/* Engine Body - Nuclear Isolation via Iframe */}
+                                <div className="p-0 flex bg-black flex-grow relative overflow-hidden w-full">
+                                    <iframe 
+                                        src={`/projects/null/demo?mode=${gameMode}`} 
+                                        className="w-full h-full border-0 shadow-[0_0_100px_rgba(0,0,0,0.8)]"
+                                        title="NULL Engine Runtime"
+                                        scrolling="no"
+                                        loading="lazy"
+                                    />
+
+                                    {/* Mobile Overlay Suggestion */}
+                                    <div className="md:hidden absolute bottom-4 left-0 right-0 text-center pointer-events-none">
+                                        <p className="text-[10px] font-mono text-[#00BFDF]/40 animate-pulse uppercase tracking-[0.2em]">
+                                            OPTIMIZED FOR DESKTOP INPUT
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </motion.section>
+            )}
+
             {/* Salsealo Interactive Demo Section */}
             {id === 'salsealo' && (
                 <motion.section
@@ -397,11 +495,12 @@ export default function ProjectPage() {
                         }}
                     >
                         <h2 className="text-sm font-mono uppercase tracking-[0.3em] text-muted-foreground/40 mb-12 flex items-center gap-4">
-                            <FiLayers className="text-primary" /> {id === 'odomto' ? t("project_page.core_modules") : t("project_page.key_features")}
+                            <FiLayers className="text-secondary" /> {id === 'odomto' ? t("project_page.core_modules") : t("project_page.key_features")}
                         </h2>
+                        
                         {id === 'salsealo' ? (
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {(t(`${projectKey}.highlights`) as any).map((feature: string, i: number) => (
+                                {(t(`${projectKey}.highlights`) as string[]).map((feature: string, i: number) => (
                                     <motion.div
                                         key={i}
                                         variants={{
@@ -420,7 +519,7 @@ export default function ProjectPage() {
                             </div>
                         ) : (
                             <div className="space-y-8">
-                                {(t(`${projectKey}.highlights`) as any).map((feature: string, i: number) => (
+                                {(t(`${projectKey}.highlights`) as string[]).map((feature: string, i: number) => (
                                     <motion.div
                                         key={i}
                                         variants={{
@@ -430,7 +529,7 @@ export default function ProjectPage() {
                                         className="flex gap-6 items-start group"
                                     >
                                         <div className="mt-1.5 w-6 h-6 rounded-lg bg-card flex items-center justify-center border border-border group-hover:border-primary/50 transition-colors shadow-sm group-hover:shadow-primary/10">
-                                            {id === 'odomto' ?
+                                            {id === 'odomto' || id === 'null' ?
                                                 <FiActivity className="text-primary text-sm group-hover:scale-110 transition-transform" /> :
                                                 <FiCheckCircle className="text-primary text-sm group-hover:scale-110 transition-transform" />
                                             }
@@ -446,7 +545,7 @@ export default function ProjectPage() {
                     </motion.div>
 
                     {/* Challenge & Tech Deep Dive */}
-                    <div className="space-y-16">
+                    <div className="space-y-16 lg:col-span-1">
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -456,7 +555,7 @@ export default function ProjectPage() {
                             <div className="absolute top-0 left-0 w-1 h-0 group-hover:h-full bg-primary transition-all duration-700" />
                             <h2 className="text-sm font-mono uppercase tracking-[0.3em] text-primary mb-6">{t("project_page.the_challenge")}</h2>
                             <p className="text-lg text-muted-foreground italic font-serif leading-relaxed">
-                                "{t(`${projectKey}.challenge`)}"
+                                &quot;{t(`${projectKey}.challenge`)}&quot;
                             </p>
                         </motion.div>
 
@@ -479,7 +578,7 @@ export default function ProjectPage() {
                                     }}
                                     className="grid grid-cols-1 md:grid-cols-3 gap-4"
                                 >
-                                    {t(`${projectKey}.challenges_list`).map((c: any, i: number) => (
+                                    {(t(`${projectKey}.challenges_list`) as {title:string, description:string}[]).map((c, i: number) => (
                                         <motion.div
                                             key={i}
                                             variants={{
@@ -510,9 +609,122 @@ export default function ProjectPage() {
                             </p>
                         </motion.div>
                     </div>
-
                 </div>
             </section>
+
+            {/* Specialized NULL Sections */}
+            {id === 'null' && (
+                <>
+                    {/* Compute Isolation Hub */}
+                    <section className="py-32 px-6 bg-[#030712] border-b border-white/5 overflow-hidden">
+                        <div className="max-w-7xl mx-auto">
+                            <h2 className="text-sm font-mono uppercase tracking-[0.4em] text-primary mb-16">Thread Isolation Lab</h2>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                                <div className="space-y-8">
+                                    <h3 className="text-5xl md:text-7xl font-black text-white tracking-tighter">
+                                        Compute<br />Isolation
+                                    </h3>
+                                    <p className="text-xl text-muted-foreground/80 leading-relaxed max-w-xl">
+                                        Decoupling standard React hydration from the high-frequency game loop using dedicated Web Worker instances. Zero main-thread overhead.
+                                    </p>
+
+                                    <div className="grid grid-cols-2 gap-8 pt-8">
+                                        <div className="space-y-2">
+                                            <div className="text-3xl font-bold text-white">16.6ms</div>
+                                            <div className="text-[10px] uppercase tracking-widest text-muted-foreground font-mono">Target Frame Time</div>
+                                        </div>
+                                        <div className="space-y-2">
+                                            <div className="text-3xl font-bold text-primary">0%</div>
+                                            <div className="text-[10px] uppercase tracking-widest text-muted-foreground font-mono">Main Thread Jitter</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="relative aspect-square bg-primary/5 rounded-full border border-primary/10 flex items-center justify-center">
+                                    <svg viewBox="0 0 400 400" className="w-full h-full">
+                                        <motion.defs>
+                                            <linearGradient id="worker-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                <stop offset="0%" stopColor="var(--primary)" stopOpacity="0" />
+                                                <stop offset="50%" stopColor="var(--primary)" stopOpacity="0.5" />
+                                                <stop offset="100%" stopColor="var(--primary)" stopOpacity="0" />
+                                            </linearGradient>
+                                        </motion.defs>
+
+                                        {/* Main Thread Axis */}
+                                        <motion.rect
+                                            x="148" y="50" width="2" height="300"
+                                            fill="var(--muted-foreground)"
+                                            className="opacity-20"
+                                        />
+                                        {/* Worker Thread Axis */}
+                                        <motion.rect
+                                            x="248" y="50" width="2" height="300"
+                                            fill="url(#worker-gradient)"
+                                        />
+
+                                        {/* Activity Nodes */}
+                                        {[100, 180, 260].map((y, i) => (
+                                            <g key={`node-${i}`}>
+                                                <motion.circle
+                                                    cx="149" cy={y} r="4"
+                                                    fill="var(--background)" stroke="var(--muted-foreground)" strokeWidth="1"
+                                                    className="opacity-40"
+                                                />
+                                                <motion.circle
+                                                    cx="249" cy={y} r="6"
+                                                    fill="var(--primary)"
+                                                    animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
+                                                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }}
+                                                />
+                                                <motion.path
+                                                    d={`M155 ${y} L243 ${y}`}
+                                                    stroke="var(--primary)" strokeWidth="1" strokeDasharray="4 4"
+                                                    initial={{ pathLength: 0 }}
+                                                    whileInView={{ pathLength: 1 }}
+                                                    className="opacity-30"
+                                                />
+                                            </g>
+                                        ))}
+
+                                        <text x="149" y="40" textAnchor="middle" fill="var(--muted-foreground)" className="text-[9px] font-mono tracking-widest uppercase opacity-40">Main</text>
+                                        <text x="249" y="40" textAnchor="middle" fill="var(--primary)" className="text-[9px] font-mono tracking-widest uppercase">Worker</text>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Multithreaded Architecture Diagram */}
+                    <section className="py-32 px-6 bg-[#020202] border-t border-white/5">
+                        <div className="max-w-7xl mx-auto">
+                            <h2 className="text-sm font-mono uppercase tracking-[0.4em] text-muted-foreground/40 mb-16 text-center">Engine Architecture</h2>
+
+                            <div className="relative w-full aspect-[21/9] bg-card/10 rounded-[3rem] border border-primary/20 overflow-hidden p-8 md:p-16 flex items-center justify-center">
+                                <svg viewBox="0 0 1000 400" className="w-full h-full text-foreground/20">
+                                    <motion.path
+                                        d="M200 200 L400 200 M600 200 L800 200"
+                                        fill="none" stroke="var(--primary)" strokeWidth="1" strokeDasharray="5 5" opacity="0.5"
+                                    />
+                                    <g transform="translate(150, 200)">
+                                        <rect x="-80" y="-40" width="160" height="80" rx="15" fill="var(--background)" stroke="var(--border)" strokeWidth="1" />
+                                        <text x="0" y="5" textAnchor="middle" fill="white" className="text-xs font-bold font-mono">REACT UI</text>
+                                    </g>
+                                    <g transform="translate(500, 200)">
+                                        <circle r="70" fill="var(--primary)" className="opacity-10" />
+                                        <motion.circle r="60" fill="var(--primary)" className="opacity-20" animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 4, repeat: Infinity }} />
+                                        <text x="0" y="5" textAnchor="middle" fill="white" className="text-sm font-black font-mono tracking-widest text-primary">CORE</text>
+                                    </g>
+                                    <g transform="translate(850, 200)">
+                                        <rect x="-80" y="-40" width="160" height="80" rx="15" fill="var(--background)" stroke="var(--primary)" strokeWidth="1" />
+                                        <text x="0" y="5" textAnchor="middle" fill="white" className="text-xs font-bold font-mono">CANVAS GPU</text>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </section>
+                </>
+            )}
 
             {/* Specialized Salsealo Sections */}
             {id === 'salsealo' && (
@@ -601,10 +813,9 @@ export default function ProjectPage() {
                                                     "M200,80 L314,163 L270,296 L130,296 L86,163 Z",
                                                     "M200,60 L330,150 L280,310 L120,310 L70,150 Z",
                                                     "M200,80 L314,163 L270,296 L130,296 L86,163 Z"
-                                                ]
+                                                ],
+                                                transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
                                             }}
-                                            // @ts-ignore
-                                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                                         />
 
                                         {/* Data Points on the Polygon */}

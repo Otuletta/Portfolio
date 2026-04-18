@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
     "@google/generative-ai": "^0.24.1",
+    "@null/engine-core": "github:Otuletta/NULL",
     "clsx": "^2.1.1",
     "cobe": "^0.6.5",
     "framer-motion": "^12.33.0",

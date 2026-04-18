@@ -32,6 +32,16 @@ export const projects = [
         url: "otuletta.com/salsealo",
         accent: "#f97316" // Orange
     },
+    {
+        id: "null",
+        name: "NULL",
+        logo: "/images/NULL.png",
+        descriptionKey: "project_null.description_showcase",
+        highlightsKey: "project_null.highlights_showcase",
+        techKey: "project_null.tech_showcase",
+        url: "otuletta.com/null",
+        accent: "#00BFDF" // Cyan Neon
+    },
 ];
 
 // Helper interface for consistency if needed elsewhere

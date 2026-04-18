@@ -24,5 +24,9 @@ export const TECH_COLORS: Record<string, string> = {
     "Docker": "#2496ED",
     "Git": "#F05032",
     "Kotlin": "#7F52FF",
-    "Swift": "#F05138"
+    "Swift": "#F05138",
+    "Canvas API": "#818cf8",
+    "Web Workers": "#a1a1aa",
+    "Tailwind HTML": "#38B2AC",
+    "Framer Motion": "#818cf8"
 };

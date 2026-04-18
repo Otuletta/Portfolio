@@ -144,18 +144,20 @@ function ConcaveCard({ children, corner, className = "" }: {
     const springConfig = { damping: 20, stiffness: 150 };
     const rotateX = useSpring(useMotionValue(0), springConfig);
     const rotateY = useSpring(useMotionValue(0), springConfig);
-    const spotlightX = useSpring(mouseX, { damping: 30, stiffness: 200 });
-    const spotlightY = useSpring(mouseY, { damping: 30, stiffness: 200 });
 
     const [isLarge, setIsLarge] = useState(false);
 
     useEffect(() => {
         const media = window.matchMedia("(min-width: 1024px)");
-        setIsLarge(media.matches);
+        // Update state in next tick if needed, but since it's client-side, 
+        // we can just check it once on mount.
+        if (media.matches !== isLarge) {
+            setIsLarge(media.matches);
+        }
         const listener = () => setIsLarge(media.matches);
         media.addEventListener("change", listener);
         return () => media.removeEventListener("change", listener);
-    }, []);
+    }, [isLarge]);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -202,8 +204,10 @@ function ConcaveCard({ children, corner, className = "" }: {
                 willChange: 'transform, mask-image'
             }}
             whileHover={{ scale: 1.01 }}
-            className={`group relative h-full bg-card border border-border overflow-hidden transition-all hover:border-primary/40 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_0_20px_rgba(255,255,255,0.02)] ${className}`}
+            className={`group relative h-full bg-card/40 backdrop-blur-md border border-border/50 overflow-hidden transition-all duration-500 hover:border-primary/20 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_0_80px_rgba(0,0,0,0.1)] ${className}`}
         >
+            {/* Glass highlight */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
             <div className="relative z-10 h-full" style={{ transform: "translateZ(20px)" }}>
                 {children}
             </div>
@@ -245,20 +249,20 @@ export function BentoGrid() {
                 <div className="relative overflow-hidden rounded-[2rem]">
 
                     {/* ── CENTRAL PHOTO (desktop only) ── */}
-                    <div className="hidden lg:flex absolute inset-0 items-center justify-center z-50 pointer-events-none">
+                    <div className="hidden lg:flex absolute inset-0 items-center justify-center z-30 pointer-events-none">
                         {/* Outer ring - Match global edge contrast */}
                         <div className="absolute w-[365px] h-[365px] rounded-full border border-foreground/20 dark:border-primary/20" />
                         {/* Dashed spinning ring */}
                         <div className="absolute w-[355px] h-[355px] rounded-full border border-dashed border-foreground/10 dark:border-primary/10 animate-[spin_90s_linear_infinite]" />
                         {/* Photo/Logo - Solid Black Border for crispness */}
-                        <div className="relative w-[340px] h-[340px] rounded-full overflow-hidden border-[3px] border-border dark:border-primary/30 shadow-[0_0_80px_rgba(0,0,0,0.5)] bg-background flex items-center justify-center group/logo transition-colors">
+                        <div className="relative w-[280px] h-[280px] rounded-full overflow-hidden border-[2px] border-border dark:border-primary/20 shadow-[0_0_80px_rgba(0,0,0,0.5)] bg-background flex items-center justify-center group/logo transition-all duration-500">
                             <div className="relative w-full h-full p-4 flex items-center justify-center">
                                 <Image
                                     src="/images/Otuletta_logo.png"
                                     alt="Oscar Tuletta"
                                     fill
-                                    className="object-contain drop-shadow-[0_0_20px_rgba(99,102,241,0.3)] opacity-90 group-hover/logo:opacity-100 group-hover/logo:scale-110 group-hover/logo:drop-shadow-[0_0_30px_rgba(99,102,241,0.6)] transition-all duration-700 ease-out scale-110"
-                                    sizes="(min-width: 1024px) 640px, 320px"
+                                    className="object-contain drop-shadow-[0_0_20px_rgba(129,140,248,0.2)] opacity-80 group-hover/logo:opacity-100 group-hover/logo:scale-110 transition-all duration-700 ease-out scale-100"
+                                    sizes="(min-width: 1024px) 560px, 280px"
                                     quality={100}
                                     priority
                                 />
