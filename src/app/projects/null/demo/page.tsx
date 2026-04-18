@@ -40,7 +40,7 @@ function GameRenderer() {
                 Keying by mode ensures a fresh mount when switching.
             */}
             <div className="w-full h-full" key={mode}>
-                 <NullGame {...{ initialMode: mode } as any} />
+                 <NullGame />
             </div>
         </main>
     );

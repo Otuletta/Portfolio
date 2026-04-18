@@ -32,7 +32,7 @@ const itemVariants = {
         scale: 1,
         transition: {
             duration: 0.8,
-            ease: [0.22, 1, 0.36, 1] as any, // expoOut
+            ease: [0.22, 1, 0.36, 1] as [number, number, number, number], // expoOut
         },
     },
 };
@@ -43,7 +43,7 @@ export function Experience() {
     const experiences = useMemo(() => {
         const data = t("experience.milestones");
         return Array.isArray(data) ? (data as ExperienceItem[]) : [];
-    }, [language, t]);
+    }, [t]);
 
     return (
         <section id="experience" className="relative bg-background px-6 py-16 md:py-24 transition-colors">
@@ -61,7 +61,7 @@ export function Experience() {
                         <motion.h2
                             initial={{ letterSpacing: "-0.05em", opacity: 0 }}
                             whileInView={{ letterSpacing: "0.02em", opacity: 1 }}
-                            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] as any }}
+                            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
                             className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight text-foreground selection:bg-primary/30 mb-6"
                         >
                             {t("experience.title")}

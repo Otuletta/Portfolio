@@ -9,17 +9,7 @@ import { useTranslation } from "@/hooks/use-translation";
 import { FiArrowLeft, FiLayers, FiCheckCircle, FiActivity, FiCode, FiMonitor, FiArrowRight, FiShield } from "react-icons/fi";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { MagneticWrapper } from "@/components/ui/magnetic-wrapper";
-import { cn } from "@/lib/utils";
-import { TECH_COLORS } from "@/lib/constants";
-import dynamic from 'next/dynamic';
 
-const NullGame = dynamic(
-    () => import('@null/engine-core/NullGame').then(m => m.NullGame),
-    {
-        ssr: false,
-        loading: () => <div className="flex h-96 w-full items-center justify-center font-mono text-sm text-[#00BFDF] animate-pulse">Initializing Engine...</div>
-    }
-);
 
 
 export default function ProjectPage() {

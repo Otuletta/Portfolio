@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 import path from "path";
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const webpack = require("webpack");
 
 const nextConfig: NextConfig = {
   reactStrictMode: false,
@@ -22,10 +24,20 @@ const nextConfig: NextConfig = {
         fullySpecified: false,
       },
     });
+
     config.resolve.alias = {
       ...config.resolve.alias,
       '@null/engine-core/NullGame': path.resolve(__dirname, 'node_modules/@null/engine-core/NullGame/index.tsx'),
     };
+
+    config.plugins.push(
+      new webpack.NormalModuleReplacementPlugin(/\.js$/, (resource: any) => {
+        if (resource.context.includes('@null/engine-core')) {
+          resource.request = resource.request.replace(/\.js$/, '');
+        }
+      })
+    );
+
     return config;
   }
 };

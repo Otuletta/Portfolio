@@ -106,25 +106,10 @@ function ProjectItem({ project, index }: { project: ProjectData; index: number }
             y: 0,
             transition: {
                 duration: 1.2,
-                ease: [0.22, 1, 0.36, 1] as any,
+                ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
             }
         }
     };
-
-    // Stagger variants for internal content elements
-    const contentVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: (i: number) => ({
-            opacity: 1,
-            y: 0,
-            transition: {
-                delay: 0.2 + (0.1 * i),
-                duration: 0.8,
-                ease: [0.215, 0.61, 0.355, 1] as any
-            }
-        })
-    };
-
 
 
     return (

@@ -149,15 +149,15 @@ function ConcaveCard({ children, corner, className = "" }: {
 
     useEffect(() => {
         const media = window.matchMedia("(min-width: 1024px)");
-        // Update state in next tick if needed, but since it's client-side, 
-        // we can just check it once on mount.
-        if (media.matches !== isLarge) {
+        
+        const updateState = () => {
             setIsLarge(media.matches);
-        }
-        const listener = () => setIsLarge(media.matches);
-        media.addEventListener("change", listener);
-        return () => media.removeEventListener("change", listener);
-    }, [isLarge]);
+        };
+
+        updateState();
+        media.addEventListener("change", updateState);
+        return () => media.removeEventListener("change", updateState);
+    }, []);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();

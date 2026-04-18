@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Globe } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "@/hooks/use-translation";
+import { Language } from "@/lib/translations";
 
 export function LanguageSwitcher() {
     const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +41,7 @@ export function LanguageSwitcher() {
                             <button
                                 key={l.code}
                                 onClick={() => {
-                                    setLanguage(l.code as any);
+                                    setLanguage(l.code as Language);
                                     setIsOpen(false);
                                 }}
                                 className={`w-full text-center px-2 py-2 text-xs font-mono rounded-lg transition-colors ${language === l.code

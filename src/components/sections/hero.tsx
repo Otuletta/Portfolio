@@ -157,7 +157,7 @@ function HeroAICommand({ isThinking, setIsThinking }: { isThinking: boolean; set
                             exit={{ opacity: 0 }}
                             className="text-[10px] font-mono text-muted-foreground/50 uppercase tracking-widest"
                         >
-                            Powered by Otuletta's Intelligence
+                            Powered by Otuletta&apos;s Intelligence
                         </motion.p>
                     )}
                 </AnimatePresence>

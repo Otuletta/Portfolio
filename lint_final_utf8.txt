@@ -1,0 +1,46 @@
+﻿
+> portfolio-oscar@0.1.0 lint
+> eslint
+
+
+D:\Portfolio\portfolio-oscar\src\app\projects\[id]\page.tsx
+  12:8  warning  'dynamic' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Portfolio\portfolio-oscar\src\components\sections\bento-grid.tsx
+  152:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+D:\Portfolio\portfolio-oscar\src\components\sections\bento-grid.tsx:152:9
+  150 |     useEffect(() => {
+  151 |         const media = window.matchMedia("(min-width: 1024px)");
+> 152 |         setIsLarge(media.matches);
+      |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  153 |         
+  154 |         const listener = () => setIsLarge(media.matches);
+  155 |         media.addEventListener("change", listener);  react-hooks/set-state-in-effect
+
+D:\Portfolio\portfolio-oscar\src\hooks\use-translation.tsx
+  21:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+D:\Portfolio\portfolio-oscar\src\hooks\use-translation.tsx:21:13
+  19 |         const savedLang = localStorage.getItem("portfolio-lang") as Language;
+  20 |         if (savedLang && ["EN", "ES", "FR", "DE", "IT"].includes(savedLang)) {
+> 21 |             setLanguage(savedLang);
+     |             ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  22 |         }
+  23 |     }, []);
+  24 |  react-hooks/set-state-in-effect
+
+Γ£û 3 problems (2 errors, 1 warning)
+

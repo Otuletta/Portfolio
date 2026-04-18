@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { useState, useEffect } from "react";
 import {
     SiReact,
@@ -23,6 +23,15 @@ import {
 import { FaAws, FaJava } from "react-icons/fa";
 import { TbBrandCSharp } from "react-icons/tb";
 import { useTranslation } from "@/hooks/use-translation";
+
+interface Skill {
+    name: string;
+    category: string;
+    icon: React.ReactNode;
+    color: string;
+    x: number;
+    y: number;
+}
 
 const categories = [
     { name: "Frontend", x: -450, y: 0, color: "#818cf8" },
@@ -81,7 +90,7 @@ function NeuralPath({ start, end, color, isActive }: { start: { x: number, y: nu
     );
 }
 
-function SkillNode({ skill, isActive, onHover }: { skill: any, isActive: boolean, onHover: (v: boolean) => void }) {
+function SkillNode({ skill, isActive, onHover }: { skill: Skill, isActive: boolean, onHover: (v: boolean) => void }) {
     return (
         <motion.g
             variants={{
@@ -161,7 +170,7 @@ export function SkillsShowcase() {
     const mobileViewBox = isMobile ? "-600 -550 1200 1100" : "-1150 -1000 2300 2000";
 
     // Dynamic animation variants - High Performance Focus
-    const sectionVariants: any = {
+    const sectionVariants: Variants = {
         hidden: { opacity: 0, scale: 0.98 },
         visible: {
             opacity: 1,
@@ -192,7 +201,7 @@ export function SkillsShowcase() {
                 <motion.h2
                     initial={{ letterSpacing: "-0.05em", opacity: 0 }}
                     whileInView={{ letterSpacing: "0.02em", opacity: 1 }}
-                    transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] as any }}
+                    transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
                     className="text-4xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none text-foreground selection:bg-primary/30"
                 >
                     {t("skills.title")}

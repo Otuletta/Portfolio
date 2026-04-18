@@ -1,0 +1,95 @@
+﻿
+> portfolio-oscar@0.1.0 lint
+> eslint
+
+
+D:\Portfolio\portfolio-oscar\next.config.ts
+   2:8   warning  'path' is defined but never used         @typescript-eslint/no-unused-vars
+  26:21  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+D:\Portfolio\portfolio-oscar\src\app\projects\[id]\page.tsx
+  12:10  warning  'cn' is defined but never used                 @typescript-eslint/no-unused-vars
+  13:10  warning  'TECH_COLORS' is defined but never used        @typescript-eslint/no-unused-vars
+  16:7   warning  'NullGame' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+D:\Portfolio\portfolio-oscar\src\app\projects\null\demo\page.tsx
+  43:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Portfolio\portfolio-oscar\src\components\providers\cal-provider.tsx
+  23:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Portfolio\portfolio-oscar\src\components\sections\bento-grid.tsx
+  155:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+D:\Portfolio\portfolio-oscar\src\components\sections\bento-grid.tsx:155:13
+  153 |         // we can just check it once on mount.
+  154 |         if (media.matches !== isLarge) {
+> 155 |             setIsLarge(media.matches);
+      |             ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  156 |         }
+  157 |         const listener = () => setIsLarge(media.matches);
+  158 |         media.addEventListener("change", listener);  react-hooks/set-state-in-effect
+
+D:\Portfolio\portfolio-oscar\src\components\sections\experience.tsx
+  35:41  error    Unexpected any. Specify a different type                                                                        @typescript-eslint/no-explicit-any
+  46:8   warning  React Hook useMemo has an unnecessary dependency: 'language'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+  64:86  error    Unexpected any. Specify a different type                                                                        @typescript-eslint/no-explicit-any
+
+D:\Portfolio\portfolio-oscar\src\components\sections\hero.tsx
+  160:48  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+D:\Portfolio\portfolio-oscar\src\components\sections\project-showcase.tsx
+  109:45  error    Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+  115:11  warning  'contentVariants' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  123:50  error    Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+
+D:\Portfolio\portfolio-oscar\src\components\sections\skills-showcase.tsx
+   84:59  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  164:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  195:78  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Portfolio\portfolio-oscar\src\components\ui\language-switcher.tsx
+  43:59  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Portfolio\portfolio-oscar\src\components\ui\modern-availability-badge.tsx
+  3:10  warning  'motion' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Portfolio\portfolio-oscar\src\components\ui\social-connection-hub.tsx
+   9:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  14:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  19:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  24:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  29:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  34:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  39:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  44:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Portfolio\portfolio-oscar\src\hooks\use-translation.tsx
+   9:25  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-explicit-any
+  21:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+D:\Portfolio\portfolio-oscar\src\hooks\use-translation.tsx:21:13
+  19 |         const savedLang = localStorage.getItem("portfolio-lang") as Language;
+  20 |         if (savedLang && ["EN", "ES", "FR", "DE", "IT"].includes(savedLang)) {
+> 21 |             setLanguage(savedLang);
+     |             ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  22 |         }
+  23 |     }, []);
+  24 |  react-hooks/set-state-in-effect
+  30:31  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-explicit-any
+  32:22  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-explicit-any
+
+Γ£û 32 problems (25 errors, 7 warnings)
+

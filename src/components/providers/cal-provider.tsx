@@ -20,7 +20,7 @@ export function CalProvider({ children }: { children: React.ReactNode }) {
                 hideEventTypeDetails: false,
                 layout: "month_view",
                 language: language.toLowerCase(),
-            } as any);
+            } as Record<string, unknown>);
         })();
     }, [language]);
 
